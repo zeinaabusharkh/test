@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+    <!-- Tell iOS not to automatically link certain text strings. -->
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 23 - 41 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <style>
+        table {
+            border-spacing: 0;
+        }
+
+        /* What it does: Tells the email client that only light styles are provided but the client can transform them to dark. A duplicate of meta color-scheme meta tag above. */
+        :root {
+            color-scheme: light;
+            supported-color-schemes: light;
+        }
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        /* What it does: forces Samsung Android mail clients to use the entire viewport */
+        #MessageViewBody,
+        #MessageWebViewDiv {
+            width: 100% !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        a[x-apple-data-detectors],
+        /* iOS */
+        .unstyle-auto-detected-links a,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img+div {
+            display: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u~div .email-container {
+                min-width: 320px !important;
+            }
+        }
+
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u~div .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u~div .email-container {
+                min-width: 414px !important;
+            }
+        }
+    </style>
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+
+        .button-td-primary:hover,
+        .button-a-primary:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 480px) {
+
+            /* What it does: Forces table cells into full-width rows. */
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+
+            /* And center justify these ones. */
+            .stack-column-center {
+                text-align: center !important;
+            }
+
+            /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+
+            /* What it does: Adjust typography on small screens to improve readability */
+            .email-container p {
+                font-size: 17px !important;
+            }
+        }
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+</head>
+
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;">
+    <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #222222;">
+        <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #222222;">
+    <tr>
+    <td>
+    <![endif]-->
+
+
+
+        <!-- Preview Text Spacing Hack : BEGIN -->
+        <div
+            style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <!-- Preview Text Spacing Hack : END -->
+
+
+        <div style="max-width: 680px; margin: 0 auto;" class="email-container">
+            <!--[if mso]>
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="680">
+            <tr>
+            <td>
+            <![endif]-->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+                <!-- Email Header : BEGIN -->
+                <tr>
+                    <td style="padding: 20px 0; text-align: center">
+                        <img src="http://www.sindanmotorcycle.com/wp-content/uploads/2018/04/sma.png" width="200"
+                            height="50" alt="SMA_LOGO" border="0"
+                            style="height: auto; background:transparet; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+                    </td>
+                </tr>
+                <!-- Email Header : END -->
+
+                <!-- Exhaust Image 1, Flush : BEGIN  -->
+                <tr>
+                    <td style="background-color: #222222;">
+                        <a href="https://www.sindanmotorcycle.com/product-category/exhausts/"><img
+                                src="https://i.ibb.co/cYwdVS7/sma-pic.png" width="680" height="" alt="SMA_Exhaust pic"
+                                border="0" style="width: 100%; max-width: 680px; height: auto; background: #dddddd; font-family:
+                    sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;"
+                                class="g-img">
+                        </a>
+                    </td>
+                    </td>
+                </tr>
+                <!-- Exhaust1 Image 1, Flush : END -->
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr>
+                    <td style="background-color: #222222;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td
+                                    style=" font-family: sans-serif; font-size: 15px; line-height: 20px; color: #ffffff; ">
+                                    <h1
+                                        style="margin: 0 0 20px; font-size: 36px; line-height: 60px; color: #ffffff; font-weight: bold; text-align: center;">
+                                        Free Shipping <br> On All Orders Over AED 200/- <br>
+                                        Check Out Our New Arrival Parts</h1>
+                                    <h2 style="text-align: center;line-height:40px ;">Harley, Gold Wing & BMW R1200
+                                        Accessories</h2>
+                                    <h3 style="text-align: center; color: #adb3b9; ">Valid till
+                                        August 2020</h3>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0 20px 20px;">
+                                    <!-- Shop-now Button : BEGIN -->
+                                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                        style="margin: auto;">
+                                        <tr>
+                                            <td class="button-td button-td-primary"
+                                                style="border-radius: 4px; background: #222222;">
+                                                <a class="button-a button-a-primary"
+                                                    href="https://www.sindanmotorcycle.com/"
+                                                    style="background: #FF3100; border: 1px solid #FF3100; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;">Shop
+                                                    Now </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- Shop-now Button : END -->
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <!-- 1 Column Text + Button : END -->
+
+
+                <!-- Exhuast2 Image 2, Flush : BEGIN -->
+                <tr>
+                    <td style="background-color: #222222;">
+                        <a href="https://www.sindanmotorcycle.com/"><img src="https://i.ibb.co/WPCqpGC/footer-img.png"
+                                alt="footer-img" border="0" width="680" height="" alt="alt_text" border="0"
+                                style="width: 100%; max-width: 680px; height: auto; background: #222222; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;"
+                                class="g-img">
+                        </a>
+                    </td>
+                </tr>
+                <!-- Exhuast Image 2, Flush : END -->
+
+
+
+
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+                style="max-width: 680px;">
+                <div
+                    style="background-color:#222222; text-align:left;font-size:12px;line-height:19px;columns: #222222;;font-family:sans-serif;float:left;max-width:400px;min-width:320px;width:calc(8000% - 47600px)">
+                    <div style="margin:10px 20px 10px 20px">
+                        <table style="border-collapse:collapse;table-layout:fixed" role="presentation">
+                            <tbody>
+                                <tr role="navigation">
+                                    <td style="padding:0;width:26px"><a
+                                            style="text-decoration:underline;columns: #222222;"
+                                            href="https://www.facebook.com/sindanmotorcycle/" target="_blank"
+                                            data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/sindanmotorcycle/&amp;source=gmail&amp;ust=1593721748756000&amp;usg=AFQjCNHzTDum2zxEtBt0cNwpNjjvJNB-NA"><img
+                                                style="border:0"
+                                                src="https://ci5.googleusercontent.com/proxy/GplEUIANiT4jpywTagg-KvOxqKpBdGsE4cjFKdzo5p5l-qYUeR-FRP7uWzdB9fKCipuIMWTKJoYdq2DcqPAQIOFskW2Xe6yZE811nMphsPnIGzVTj0j_V_TMagoAVBcL_-s5N1s=s0-d-e1-ft#https://i2.createsend1.com/static/eb/master/13-the-blueprint-3/images/facebook.png"
+                                                alt="Facebook" width="26" height="26" class="CToWUd"></a></td>
+                                    <td style="padding:0 0 0 3px;width:26px"><a
+                                            style="text-decoration:underline;color:#222222"
+                                            href="https://www.instagram.com/sindan_motorcycle/" target="_blank"
+                                            data-saferedirecturl="https://www.google.com/url?q=https://www.instagram.com/sindan_motorcycle/&amp;source=gmail&amp;ust=1593721748757000&amp;usg=AFQjCNF3zn5c14MV9mgQCxMBB96hN5dRzQ"><img
+                                                style="border:0"
+                                                src="https://ci3.googleusercontent.com/proxy/5lXDWvMkRhnjR6LjrUaHIFMf8usm2PPpb8BE3hiuvIBnG4nnyyTUHwg9-QdpwJG1Y8xvTdq1nUYrs1oIfI0pcOo5DFv0uRFw0SbASJeCstyG0zyt7BPSefh0c5WjfC8KtE6mtRg3=s0-d-e1-ft#https://i5.createsend1.com/static/eb/master/13-the-blueprint-3/images/instagram.png"
+                                                alt="Instagram" width="26" height="26" class="CToWUd"></a></td>
+                                    <td style="padding:0 0 0 3px;width:26px"><a
+                                            style="text-decoration:underline;color:#222222"
+                                            href="http://www.sindanmotorcycle.com/" target="_blank"
+                                            data-saferedirecturl="https://www.google.com/url?q=http://www.sindanmotorcycle.com/&amp;source=gmail&amp;ust=1593721748757000&amp;usg=AFQjCNFTwrrNY0pVgzuqAjQQYIkT2wQNbA"><img
+                                                style="border:0"
+                                                src="https://ci5.googleusercontent.com/proxy/Illq76PuW7WiP5R1phw7wfHrJi-MqCws4AloZe_HbNDceKEZLDXk5XRZ8mhzpxViKEI5dEt41qCMhkbX_q4RbVW1nQHl-tyHqxtDLzzWP0Ei587HfZt4sEARmy_kuY2_V7Y3nA=s0-d-e1-ft#https://i7.createsend1.com/static/eb/master/13-the-blueprint-3/images/website.png"
+                                                alt="Website" width="26" height="26" class="CToWUd"></a></td>
+                                    <td style="padding:0 0 0 3px;width:26px"><a
+                                            style="text-decoration:underline;color:#222222"
+                                            href="https://www.pinterest.com/sindanmotorcycle/" target="_blank"
+                                            data-saferedirecturl="https://www.google.com/url?q=https://www.pinterest.com/sindanmotorcycle/&amp;source=gmail&amp;ust=1593721748757000&amp;usg=AFQjCNF6uvBt6iBSeiO6IvBQP61thlSA6g"><img
+                                                style="border:0"
+                                                src="https://ci4.googleusercontent.com/proxy/V8Jt1AWWITPGXjggCkahTWACauCGxBm32TzDlO_5clCC88TUF89ZbP4jHXj-DHNrifOMnpOIbhcZ3BXbymaJxRRf50NebpdSQ2oXRDRAzjEb8hXjKzolHLT-teQ2QaHGR0IMyCZ5=s0-d-e1-ft#https://i8.createsend1.com/static/eb/master/13-the-blueprint-3/images/pinterest.png"
+                                                alt="Pinterest" width="26" height="26" class="CToWUd"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="font-size:12px;line-height:19px;">
+                            <div><span style="color:#ffffff">phone : +971 6 572 87 67<br>Harley, Gold Wing &amp; BMW
+                                    R1200 Accessories.<br><a href="mailto:info@sindanmotorcycle.com"
+                                        target="_blank">info@sindanmotorcycle.com</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+
+
+    </center>
+</body>
+
+</html>
